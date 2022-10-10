@@ -1,3 +1,5 @@
+<?php
+
 //Сюда записываются два состояния модели, значения до измененений и после. После чего состояния сравниваются
 public static function logBankParamModelDiffInAnalystAction(array $valuesBefore = [], array $valuesAfter = [], ?int $bankId, BankParam $thisBankParam, int $type, ?string $section = null)
 {
