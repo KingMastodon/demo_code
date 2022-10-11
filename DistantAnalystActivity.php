@@ -45,6 +45,7 @@ class DistantAnalystActivity extends ActiveRecord
     const SECTION_PROMO_RULE_TYPE = "Тип павила";
 
     const SECTION_PARAM_PROP = "Свойства параметра";
+
     /**
      * {@inheritdoc}
      */
@@ -84,18 +85,32 @@ class DistantAnalystActivity extends ActiveRecord
         ];
     }
 
+    /**
+     * @param int $type
+     * @param Banks|null $bank
+     * @param string|null $section
+     * @param string $propName
+     * @param string $bankPropStatus
+     * @param array $propValueBefore
+     * @param array $propValueAfter
+     * @param int $propValueNameType
+     * @param int $propLabelType
+     * @param string $bankPropComment
+     * @param int|null $hostId
+     * @return void
+     */
     public static function logAnalystActivity(
-        int    $type,
+        int     $type,
         ?Banks  $bank,
         ?string $section,
         string  $propName,
-        string $bankPropStatus,
-        array  $propValueBefore,
-        array  $propValueAfter,
-        int $propValueNameType,
-        int $propLabelType,
-        string $bankPropComment,
-        ?int $hostId
+        string  $bankPropStatus,
+        array   $propValueBefore,
+        array   $propValueAfter,
+        int     $propValueNameType,
+        int     $propLabelType,
+        string  $bankPropComment,
+        ?int    $hostId
     )
     {
         if (count($propValueBefore) > 0 || count($propValueAfter) > 0) {
@@ -122,6 +137,10 @@ class DistantAnalystActivity extends ActiveRecord
         }
     }
 
+    /**
+     * @param array $array
+     * @return array
+     */
     public static function convertVariousValuesIntoNames(array $array): array
     {
         $result = [];
@@ -174,17 +193,26 @@ class DistantAnalystActivity extends ActiveRecord
         return $array;
     }
 
-    public static function getTypes():array
+    /**
+     * @return array
+     */
+    public static function getTypes(): array
     {
         return self::find()->select('type')->distinct()->column();
     }
 
-    public static function getBanks():array
+    /**
+     * @return array
+     */
+    public static function getBanks(): array
     {
         return self::find()->select('bank_id')->distinct()->column();
     }
 
-    public static function getUserIds():array
+    /**
+     * @return array
+     */
+    public static function getUserIds(): array
     {
         return self::find()->select('user_id')->distinct()->column();
     }
